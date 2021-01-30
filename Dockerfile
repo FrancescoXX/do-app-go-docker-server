@@ -1,13 +1,13 @@
-FROM golang:1.7
+FROM golang:1.15.7
 
-EXPOSE 8080
-
-RUN mkdir -p /app
- 
+EXPOSE 8081
 WORKDIR /app
+
+COPY . /app
  
-ADD . /app
- 
+RUN go get -d github.com/gorilla/mux
+
+# RUN go install 
 RUN go build ./app.go
  
 CMD ["./app"]
