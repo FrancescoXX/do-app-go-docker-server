@@ -42,7 +42,7 @@ func getOneArticle(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     key := vars["id"]
 
-
+    fmt.Println(strconv.Atoi("5"))
 
     for _, article := range Articles {
         
@@ -74,36 +74,8 @@ func updateOneArticle(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type","application/json")
     
     fmt.Println("Endpoint Hit: updateOneArticle")
-    
-    // Get the new Body
-    reqBody, _ := ioutil.ReadAll(r.Body)
-    var article Article 
-    json.Unmarshal(reqBody, &article)
 
-    vars := mux.Vars(r)
-    id := vars["id"]
-
-    for i := range Articles {
-        if article.Id == id {
-
-            Articles[id] = article 
-            // Articles = append(Articles[:index], article)
-        }
-    }
-
-    // Articles = append(Articles, article)
-
-    // // get the body of our POST request
-    // // unmarshal this into a new Article struct
-    // // append this to our Articles array.    
-    // reqBody, _ := ioutil.ReadAll(r.Body)
-    // var article Article 
-    // json.Unmarshal(reqBody, &article)
-    // // update our global Articles array to include
-    // // our new Article
-    // Articles = append(Articles, article)
-
-    json.NewEncoder(w).Encode(article)
+    // json.NewEncoder(w).Encode(article)
 }
 
 func deleteOneArticle(w http.ResponseWriter, r *http.Request) {
